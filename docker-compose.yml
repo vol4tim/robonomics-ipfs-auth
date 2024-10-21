@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  app:
+    image: vol4/robonomics-ipfs-auth
+    ports:
+      - "5050:5050"
+    environment:
+      - IPFS_ENDPOINT=http://ipfs:5001
+    depends_on:
+      - ipfs
+
+  ipfs:
+    image: ipfs/kubo
+    ports:
+      - "8080:8080"
+      - "5001:5001"
+    volumes:
+      - ./ipfs:/data/ipfs
